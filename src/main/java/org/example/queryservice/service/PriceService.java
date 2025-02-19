@@ -17,16 +17,9 @@ public class PriceService {
 
     public PriceResponse getApplicablePrice(String productId, int brandId, LocalDateTime date) {
         List<Price> prices = priceRepository.findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(productId, brandId, date, date);
-        System.out.println("prices is equal to " + prices.size());
 
         if (!prices.isEmpty()) {
-            /*Price priceOutput = prices.stream()
-                    .filter(price -> productId.equals(price.getProductId()) && price.getBrandId() == brandId
-                            && date.isAfter(price.getStartDate()) && date.isBefore(price.getEndDate()))
-                    .max((p1, p2) -> Integer.compare(p1.getPriority(), p2.getPriority()))
-                    .orElse(null);
-*/
-            Price priceOutput = prices.get(0);
+            Price priceOutput = prices.stream().findFirst().orElse(null);
             return new PriceResponse(
                     priceOutput.getProductId(),
                     priceOutput.getBrandId(),

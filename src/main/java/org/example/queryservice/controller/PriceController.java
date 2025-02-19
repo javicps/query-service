@@ -29,7 +29,6 @@ public class PriceController {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-System.out.println("ENTERING");
         PriceResponse priceResponse = priceService.getApplicablePrice(productId, brandId, dtf.parse(date, LocalDateTime::from));
         if (priceResponse == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Price not found for given parameters");
