@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface PriceRepository extends JpaRepository<Price, Long> {
-
-    List<Price> findApplicablePricesForProduct(String productId, Long brandId, LocalDateTime applicableDate);
+    List<Price> findByProductIdAndBrandIdOrderByPriorityDesc(
+            String productId, int brandId);
 }

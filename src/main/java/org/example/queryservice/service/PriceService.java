@@ -15,16 +15,24 @@ public class PriceService {
     @Autowired
     private PriceRepository priceRepository;
 
-    public PriceResponse getApplicablePrice(String productId, Long brandId, LocalDateTime date) {
-        List<Price> prices = priceRepository.findApplicablePricesForProduct(productId, brandId, date);
+    public PriceResponse getApplicablePrice(String productId, int brandId, LocalDateTime date) {
+        List<Price> prices = priceRepository.findByProductIdAndBrandIdOrderByPriorityDesc(productId, brandId);
+        System.out.println("prices is equal to " + prices.size());
+
         if (!prices.isEmpty()) {
-            Price price = prices.get(0);
+            /*Price priceOutput = prices.stream()
+                    .filter(price -> productId.equals(price.getProductId()) && price.getBrandId() == brandId
+                            && date.isAfter(price.getStartDate()) && date.isBefore(price.getEndDate()))
+                    .max((p1, p2) -> Integer.compare(p1.getPriority(), p2.getPriority()))
+                    .orElse(null);
+*/
+            Price priceOutput = prices.get(0);
             return new PriceResponse(
-                    price.getProductId(),
-                    price.getBrandId(),
-                    price.getPriceList(),
+                    priceOutput.getProductId(),
+                    priceOutput.getBrandId(),
+                    priceOutput.getPriceList(),
                     date,
-                    price.getPrice()
+                    priceOutput.getPrice()
             );
         }
         return null;
