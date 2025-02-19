@@ -16,7 +16,7 @@ public class PriceService {
     private PriceRepository priceRepository;
 
     public PriceResponse getApplicablePrice(String productId, int brandId, LocalDateTime date) {
-        List<Price> prices = priceRepository.findByProductIdAndBrandIdOrderByPriorityDesc(productId, brandId);
+        List<Price> prices = priceRepository.findByProductIdAndBrandIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(productId, brandId, date, date);
         System.out.println("prices is equal to " + prices.size());
 
         if (!prices.isEmpty()) {

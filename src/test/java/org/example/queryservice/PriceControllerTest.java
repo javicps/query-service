@@ -25,8 +25,7 @@ public class PriceControllerTest {
                             .param("brandId", "1")
                             .param("date", "2020-06-14 10:00:00"))
                     .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.finalPrice").value(25.45));
-
+                    .andExpect(jsonPath("$.finalPrice").value(35.50));
         }
     }
 }
