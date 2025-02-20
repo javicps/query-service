@@ -10,6 +10,42 @@ public class Price {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setPriceList(int priceList) {
+        this.priceList = priceList;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setCurr(String curr) {
+        this.curr = curr;
+    }
+
     @Column(name = "brand_id")
     private int brandId;
 
@@ -64,6 +100,10 @@ public class Price {
 
     public String getCurr() {
         return curr;
+    }
+
+    public long getId() {
+        return id;
     }
 }
 

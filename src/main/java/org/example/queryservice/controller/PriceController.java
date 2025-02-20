@@ -1,8 +1,8 @@
 package org.example.queryservice.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.queryservice.PriceResponse;
+import org.example.queryservice.exception.PriceNotFoundException;
 import org.example.queryservice.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +31,7 @@ public class PriceController {
 
         PriceResponse priceResponse = priceService.getApplicablePrice(productId, brandId, dtf.parse(date, LocalDateTime::from));
         if (priceResponse == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Price not found for given parameters");
+            throw new PriceNotFoundException("No applicable price found for product ID: " + productId);
         }
         return priceResponse;
     }
