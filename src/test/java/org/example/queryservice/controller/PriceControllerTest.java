@@ -82,9 +82,9 @@ public class PriceControllerTest {
     }
 
     @Test
-    public void testPriceAtYear2021ReturnsNotFound() throws Exception {
+    public void testPriceWithUnknownBrandReturnsNotFound() throws Exception {
         {
-            getPerform("35455", "4", "2021-06-16 21:00:00")
+            getPerform("35455", "4", "2020-06-16 21:00:00")
                     .andExpect(status().isNotFound())
                     .andExpect(result -> assertInstanceOf(PriceNotFoundException.class, result.getResolvedException()));
         }

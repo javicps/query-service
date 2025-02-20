@@ -10,6 +10,30 @@ public class Price {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "brand_id")
+    private int brandId; // The numeric identifier for a brand
+
+    @Column(name = "start_date")
+    private LocalDateTime startDate; // starting date and time when the price is valid
+
+    @Column(name = "end_date")
+    private LocalDateTime endDate; // end date and time when the price is valid
+
+    @Column(name = "price_list")
+    private int priceList; // the price list numeric identifier
+
+    @Column(name = "product_id")
+    private String productId; // product code or SKU
+
+    @Column(name = "priority")
+    private int  priority; // priority in case two prices are applicable
+
+    @Column(name = "price")
+    private double price; // price for the product
+
+    @Column(name = "curr")
+    private String curr; // currency code associated with the price
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -46,29 +70,9 @@ public class Price {
         this.curr = curr;
     }
 
-    @Column(name = "brand_id")
-    private int brandId;
-
-    @Column(name = "start_date")
-    private LocalDateTime startDate;
-
-    @Column(name = "end_date")
-    private LocalDateTime endDate;
-
-    @Column(name = "price_list")
-    private int priceList;
-
-    @Column(name = "product_id")
-    private String productId;
-
-    @Column(name = "priority")
-    private int  priority;
-
-    @Column(name = "price")
-    private double price;
-
-    @Column(name = "curr")
-    private String curr;
+    public long getId() {
+        return id;
+    }
 
     public int getBrandId() {
         return brandId;
@@ -102,8 +106,6 @@ public class Price {
         return curr;
     }
 
-    public long getId() {
-        return id;
-    }
+
 }
 

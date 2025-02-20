@@ -3,7 +3,6 @@ package org.example.queryservice.model;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class PriceTest {
